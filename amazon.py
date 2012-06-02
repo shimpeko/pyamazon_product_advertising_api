@@ -30,8 +30,7 @@ class Amazon:
         return self.__h.request(self.get_request_url(**req_params))
 
     def get_request_url(self, **req_params):
-        req_params = self.__build_req_params(**req_params)
-        return self.__build_url(req_params)
+        return self.__build_url(dict(self.__default_req_params, **req_params))
 
     def __build_url(self, req_params):
         req_params['Timestamp'] = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
@@ -44,7 +43,4 @@ class Amazon:
                                            , hashlib.sha256).digest()))
         url = self.__amazon_url + "?" + req_param_str + "&Signature=" + signature 
         return url
-
-    def __build_req_params(self, **req_params):
-        return dict(self.__default_req_params, **req_params)
 
