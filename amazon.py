@@ -10,20 +10,20 @@ class Amazon:
                  , cache_dir
                  , secret_key
                  , url
-                 , version
-                 , access_key
-                 , associate_tag
-                 , service
-                 , operation
+                 , Version
+                 , AWSAccessKeyId
+                 , AssociateTag
+                 , Service
+                 , Operation
                  , **default_req_params):
-        self.__secret_key = secret_key
         self.__h = httplib2.Http(cache_dir) 
+        self.__secret_key = secret_key
         self.__amazon_url = url;
-        self.__default_req_params = {'Version': version
-                                   , 'AWSAccessKeyId': access_key
-                                   , 'AssociateTag': associate_tag
-                                   , 'Service': service
-                                   , 'Operation': operation}
+        self.__default_req_params = {'Version': Version
+                                   , 'AWSAccessKeyId': AWSAccessKeyId
+                                   , 'AssociateTag': AssociateTag
+                                   , 'Service': Service
+                                   , 'Operation': Operation}
         self.__default_req_params.update(default_req_params)
 
     def request(self, **req_params):
